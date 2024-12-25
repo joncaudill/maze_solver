@@ -27,6 +27,7 @@ def main():
     cell5.draw()
     cell6 = Cell(400, 100, 500, 200, window, has_top=False, has_bottom=False)
     cell6.draw()
+    cell5.draw_move(cell4)
 
     window.wait_for_close()
 

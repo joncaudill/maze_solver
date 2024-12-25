@@ -1,6 +1,5 @@
 from point import Point
 from line import Line
-from window import Window
 
 class Cell():
     def __init__(self, x1, y1, x2, y2, win, has_left=True, has_right=True, has_top=True, has_bottom=True):
@@ -35,3 +34,18 @@ class Cell():
             self._win.draw_line(top, "black")
         if self.has_bottom:
             self._win.draw_line(bottom, "black")
+
+    def draw_move(self, to_cell, undo=False):
+        if undo:
+            color = "gray"
+        else:
+            color = "red"
+        mid_x1 = (self._x1 + self._x2) // 2
+        mid_y1 = (self._y1 + self._y2) // 2
+        mid_x2 = (to_cell._x1 + to_cell._x2) // 2
+        mid_y2 = (to_cell._y1 + to_cell._y2) // 2
+        point1 = Point(mid_x1, mid_y1)
+        point2 = Point(mid_x2, mid_y2)
+        move = Line(point1, point2)
+        self._win.draw_line(move, color)
+        
