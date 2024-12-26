@@ -12,6 +12,7 @@ class Cell():
         self.has_right = has_right
         self.has_top = has_top
         self.has_bottom = has_bottom
+        self.visited = False
 
     def draw(self):
         if self._win is None:
