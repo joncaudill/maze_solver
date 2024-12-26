@@ -2,7 +2,7 @@ from point import Point
 from line import Line
 
 class Cell():
-    def __init__(self, x1, y1, x2, y2, win, has_left=True, has_right=True, has_top=True, has_bottom=True):
+    def __init__(self, x1, y1, x2, y2, win = None, has_left=True, has_right=True, has_top=True, has_bottom=True):
         self._x1 = x1
         self._y1 = y1
         self._x2 = x2
@@ -14,6 +14,8 @@ class Cell():
         self.has_bottom = has_bottom
 
     def draw(self):
+        if self._win is None:
+            return
         x1 = self._x1
         y1 = self._y1
         x2 = self._x2
@@ -28,12 +30,20 @@ class Cell():
         left = Line(point1, point3)
         if self.has_left:
             self._win.draw_line(left, "black")
+        else:
+            self._win.draw_line(left, "#d9d9d9")
         if self.has_right:
             self._win.draw_line(right, "black")
+        else:
+            self._win.draw_line(right, "#d9d9d9")
         if self.has_top:
             self._win.draw_line(top, "black")
+        else:
+            self._win.draw_line(top, "#d9d9d9")
         if self.has_bottom:
             self._win.draw_line(bottom, "black")
+        else:
+            self._win.draw_line(bottom, "#d9d9d9")
 
     def draw_move(self, to_cell, undo=False):
         if undo:
