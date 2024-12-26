@@ -14,6 +14,13 @@ class Cell():
         self.has_bottom = has_bottom
         self.visited = False
 
+    def __repr__(self):
+        return (f"Cell({self._x1}, {self._y1}, {self._x2}, {self._y2})" 
+            f" left: {self.has_left} right: {self.has_right}"
+            f" top: {self.has_top} bottom: {self.has_bottom}" 
+            f" visited: {self.visited}")
+
+
     def draw(self):
         if self._win is None:
             return
@@ -48,7 +55,7 @@ class Cell():
 
     def draw_move(self, to_cell, undo=False):
         if undo:
-            color = "gray"
+            color = "#d9d9d9"
         else:
             color = "red"
         mid_x1 = (self._x1 + self._x2) // 2
@@ -58,5 +65,6 @@ class Cell():
         point1 = Point(mid_x1, mid_y1)
         point2 = Point(mid_x2, mid_y2)
         move = Line(point1, point2)
+        print(f"draw line from {point1} to {point2} with color {color}")
         self._win.draw_line(move, color)
         

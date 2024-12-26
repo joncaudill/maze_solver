@@ -26,7 +26,8 @@ def main():
     # cell6 = Cell(400, 100, 500, 200, window, has_top=False, has_bottom=False)
     # cell6.draw()
     # cell5.draw_move(cell4)
-    maze = Maze(2, 2, 10, 10, 50, 50, window)
+    maze = Maze(2, 2, 11, 10, 50, 50, window)
+    maze.solve()
 
     window.wait_for_close()
 
