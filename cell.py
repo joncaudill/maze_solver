@@ -65,6 +65,5 @@ class Cell():
         point1 = Point(mid_x1, mid_y1)
         point2 = Point(mid_x2, mid_y2)
         move = Line(point1, point2)
-        print(f"draw line from {point1} to {point2} with color {color}")
         self._win.draw_line(move, color)
         

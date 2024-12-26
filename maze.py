@@ -114,46 +114,35 @@ class Maze():
                     self._break_walls_r(i + 1, j)
     
     def solve(self):
-        print(f"solve called")
         solved = self._solve_r(0, 0)
         if solved:
-            print(f"solution found")
             return True
-        print(f"no solution found")
         return False
     
     def _solve_r(self, i, j):
-        print(f"solve_r called with {i}, {j}")
-        print(f"num_cols: {self._num_cols}, num_rows: {self._num_rows}")
         self._animate()
         self._cells[i][j].visited = True
         if i == self._num_cols - 1 and j == self._num_rows - 1:
             return True
-        print(f"current cell: {self._cells[i][j]}")
-        print(f"i: {i}, j: {j}")
         if i > 0 and not self._cells[i][j].has_top and not self._cells[i - 1][j].visited:
-            print(f"draw move from {i}, {j} to {i - 1}, {j}")
             self._cells[i][j].draw_move(self._cells[i - 1][j])
             success = self._solve_r(i - 1, j)
             if success:
                 return True
             self._cells[i][j].draw_move(self._cells[i - 1][j], undo=True)
         if j > 0 and not self._cells[i][j].has_left and not self._cells[i][j - 1].visited:
-            print(f"draw move from {i}, {j} to {i}, {j - 1}")
             self._cells[i][j].draw_move(self._cells[i][j - 1])
             success = self._solve_r(i, j - 1)
             if success:
                 return True
             self._cells[i][j].draw_move(self._cells[i][j - 1], undo=True)
         if i < self._num_cols - 1 and not self._cells[i][j].has_bottom and not self._cells[i + 1][j].visited:
-            print(f"draw move from {i}, {j} to {i + 1}, {j}")
             self._cells[i][j].draw_move(self._cells[i + 1][j])
             success = self._solve_r(i + 1, j)
             if success:
                 return True
             self._cells[i][j].draw_move(self._cells[i + 1][j], undo=True)
         if j < self._num_rows - 1 and not self._cells[i][j].has_right and not self._cells[i][j + 1].visited:
-            print(f"draw move from {i}, {j} to {i}, {j + 1}")
             self._cells[i][j].draw_move(self._cells[i][j + 1])
             success = self._solve_r(i, j + 1)
             if success:
